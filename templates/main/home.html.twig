@@ -1,0 +1,35 @@
+{# squelette base...... #}
+{% extends "base.html.twig" %}
+
+{# def. du titre #}
+{% block title %}Accueil{% endblock %}
+
+{# remplissage du body de la page #}
+{% block body %}
+
+    {# grille bootstrap #}
+    <div class="container-fluid">
+
+        {# titre h1 de la page #}
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center my-5">Le blog de Batman</h1>
+            </div>
+        </div>
+
+
+    {# contenu lorem #}
+    <div class="row">
+        <div class="col-12 col-md-10 mx-auto">
+
+            <h2 class="text-center my-4">Lorem ipsum dolor sit amet, consectetur.</h2>
+
+            <p class="text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ad dolorem dolores ducimus iste minima placeat ullam vitae voluptate voluptates! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus, quasi.</p>
+    </div>
+        </div>
+
+        {# affichage de l'image #}
+        <div class="row my-5 batman-cover"></div>
+
+    </div>
+{% endblock %}
