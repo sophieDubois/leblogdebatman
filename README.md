@@ -19,6 +19,15 @@ cd leblogdebatman
 composer install
 ```
 
+### Création base de données
+Configurer laconnexion à la base de données ds le fichier .env (voir cours),
+puis taper les commandes suivantes:
+...
+
+symfony console doctrine:database:create
+symfony console doctrine:migrations:migrate
+...
+
 ### Lancer le serveur
 ```
 symfony serve
