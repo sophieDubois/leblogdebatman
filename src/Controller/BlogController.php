@@ -62,4 +62,19 @@ class BlogController extends AbstractController
 
     }
 
+    /*controleur de la page liste les articles*/
+    #[Route('/publications/liste/', name: 'publication_list')]
+    public function publicationList(ManagerRegistry $doctrine): Response
+    {
+        //recup.repository des articles
+        $articleRepo = $doctrine->getRepository(article::class);
+
+        //on demande au repository de ns donner tous les articles qui sont en bdd
+        $articles = $articleRepo->findAll();
+
+        return $this->render('blog/publication_list.html.twig',[
+            'articles' => $articles,
+        ]);
+    }
+
 }
