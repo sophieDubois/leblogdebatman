@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
     {# affichage du titre de la page venant de la vue via le block "title" suivi du nom du site  collé a coté #}
-     <title>{% block title %}{% endblock %} - Le Blog de Batman</title>
+     <title>{% block title %}{% endblock %} - {{ site_name }}</title>
 
     {# block pour permettre aux pages de rajouter individuellement des fichiers css additionnels #}
     {% block css %}{% endblock %}
