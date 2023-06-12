@@ -36,7 +36,13 @@ Cette commande crééra:
 *10 comptes utilisateurs(email aléatoire,password: AAaaaa4$)
 *50articles
 
+###Installation fichiers front-end des bundles(CkEditor)
+...
+symfony console assets:install public
+...
+
 ### Lancer le serveur
 ```
 symfony serve
+si bug=>   symfony server:stop
 ```
