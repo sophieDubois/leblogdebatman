@@ -55,8 +55,8 @@ class AppFixtures extends Fixture
             $manager->persist($user);
 
         }
-        //creation de 50 articles
-        for ($i = 0; $i <= 50; $i++){
+        //creation de 200 articles
+        for ($i = 0; $i <= 200; $i++){
             $article =  new Article();
             $article
                 ->setTitle ($faker->sentence(10))
