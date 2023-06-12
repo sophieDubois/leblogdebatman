@@ -20,13 +20,21 @@ composer install
 ```
 
 ### Création base de données
-Configurer laconnexion à la base de données ds le fichier .env (voir cours),
+Configurer la connexion à la base de données ds le fichier .env (voir cours),
 puis taper les commandes suivantes:
 ...
 
 symfony console doctrine:database:create
 symfony console doctrine:migrations:migrate
 ...
+
+### Creation des fixtures
+symfony console doctrine:fixtures:load
+...
+Cette commande crééra:
+*un compte admin(email: a@a.a , password: AAaaaa4$)
+*10 comptes utilisateurs(email aléatoire,password: AAaaaa4$)
+*50articles
 
 ### Lancer le serveur
 ```
