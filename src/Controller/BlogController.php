@@ -93,7 +93,7 @@ class BlogController extends AbstractController
         ]);
     }
     /*controlleur pour voir un article en detail*/
-    #[Route('/publication/{slug}', name: 'publication_view')]
+    #[Route('/publication/{slug}/', name: 'publication_view')]
     public function publicationView(Article $article): Response
     {
 
@@ -105,6 +105,30 @@ class BlogController extends AbstractController
 
     }
 
+    /*controleur de la page admin servant à supprimer un article via son id passé ds l'URL
+    acces reservé aux administrateurs (ROLE-ADMIN)*/
+    #[Route('/publication/suppression/{id}/', name: "publication_delete", priority: 10)]
+    #[IsGranted('ROLE_ADMIN')]
+    public function publicationDelete(Article $article, ManagerRegistry $doctrine, Request $request): Response
+    {
 
+        //verif token csrf valide
+        if (!$this->isCsrfTokenValid('blog_publication_delete_' . $article->getId(), $request->query->get('csrf_token'))){
+
+            $this->addFlash('error', 'Token sécurité invalide, veuillez ré-essayer.');
+
+        }else{
+
+            $em = $doctrine->getManager();
+            $em->remove($article);
+            $em->flush();
+
+            $this->addFlash('success', 'la publication a été supprimée avec succès !');
+
+    }
+
+        return $this->redirectToRoute('blog_publication_list');
+
+    }
 
 }
