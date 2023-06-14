@@ -138,8 +138,6 @@ class BlogController extends AbstractController
         }
 
 
-
-
         return $this->render('blog/publication_view.html.twig',[
             'article'=>$article,
             'comment_create_form' => $form->createView(),
@@ -200,6 +198,32 @@ class BlogController extends AbstractController
         return $this->render('blog/publication_edit.html.twig', [
             'edit_form' => $form->createView(),
         ]);
+    }
+
+    /*controleur de la page permettant aux admin de supp. un commentaire
+    accès reservé aux administrateur (ROLE_ADMIN)*/
+
+    #[Route('/commentaires/suppression/{id}/', name: 'comment_delete')]
+    #[IsGranted('ROLE_ADMIN')]
+    public   function commentDelete(Comment $comment, Request $request, ManagerRegistry $doctrine): Response
+    {
+        if (!$this->isCsrfTokenValid('blog_comment_delete_' . $comment->getId(), $request->query->get('csrf_token'))){
+            $this->addFlash('error', 'Token sécurité, veuillez ré-essayer.');
+
+
+
+
+        }else{
+            $em =$doctrine->getManager();
+            $em->remove($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Le commentaire a été publié avec succès.');
+        }
+        return $this->redirectToRoute('blog_publication_view', [
+            'slug' => $comment->getArticle()->getSlug(),
+        ]);
+
     }
 
 }
