@@ -40,3 +40,9 @@ body{
 .pagination .page-item a.page-link:hover{
     background-color: #292929;
 }
+
+/*affichage des images de profil ds le commentaire*/
+.comment-profil-photo{
+    width: 100px;
+    height: 100px;
+}
